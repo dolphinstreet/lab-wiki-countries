@@ -16,7 +16,7 @@ function App() {
   //  const { code } = useParams()
   const apiUrl = `https://ih-countries-api.herokuapp.com/countries/`
 
- 
+
 
   useEffect(() => {
     async function fetchCountries() {
@@ -32,6 +32,12 @@ function App() {
   }, [apiUrl]
   )
 
+  if(!countries.length){
+    console.log("load")
+    return 
+ 
+   }
+
   return (
     <div className="App">
       <Navbar/>
@@ -40,7 +46,7 @@ function App() {
         <div className="row">
           <CountriesList countries={countries}/>
           <Routes>
-            <Route path=":code" element={<CountriesDetails countries={countries}/>} />
+            <Route path="/:code" element={<CountriesDetails countries={countries}/>} />
           </Routes>
             {/* React-Router Route rendering the CountryDetails should go here */}
            
